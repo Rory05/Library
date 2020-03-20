@@ -1,0 +1,149 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: rgb(220, 185, 151);
+}
+
+    a:hover {
+        color: rgb(159, 131, 103);
+    }
+
+.btn-primary {
+    color: #000000;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: rgb(220, 185, 151);
+    background-color: #000000;
+    /border-color: #ff6a00;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-image: url('../images/fon.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+button:focus {
+    outline: none;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+    background-color: rgba(62, 54, 54, .5);
+}
+/*********************************************/
+.myheader {
+    background-color: rgba(62, 54, 54, .5);
+}
+
+.kvadrat {
+    background-color: rgba(62, 54, 54, .83);
+}
+
+.knopkamesto{
+    display:block;
+}
+.knopki {
+    background-color: rgba(48, 22, 22, 0.75);
+    height: 39vh;
+    width: 33%;
+    border-color: rgba(57, 37, 37, 0.75);
+    margin-bottom: 10px;
+}
+.knopka {
+    background-color: rgba(48, 22, 22, 0.75);
+    height: 78vh;
+    width: 33%;
+    border-color: rgba(57, 37, 37, 0.75);
+    margin-bottom: 10px;
+}
+
+.mytext {
+    font-family: 'Monotype Corsiva';
+    text-decoration-color: rgb(220, 185, 151);
+    font-size: 30px;
+}
+
+.librarytext {
+    font-size: 175%;
+    font-family: Magneto;
+    /Mistral;
+    color: rgb(236, 210, 185);
+}
+
+.alltext {
+    font-family: 'Monotype Corsiva';
+    color: rgb(220, 185, 151);
+    font-size: 27px;
+}
+
+.homebtn {
+    /margin-right: 20px;
+    margin-left: 25px;
+}
+
+.table {
+    font-family: 'Monotype Corsiva';
+    color: rgb(220, 185, 151);
+    font-size: 27px;
+}
+.td {
+    
+    text-align: right;
+}
+a{
+    margin-right: 5px;
+}

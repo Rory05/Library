@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Library3.BookGenres>
+
+@{
+    ViewData["Title"] = @ViewBag.genreName + " - ";
+}
+
+<h1>@ViewBag.genreName</h1>
+
+<p>
+    @Html.ActionLink("Create", "Create", new { id = ViewBag.genreId })
+</p>
+<div>
+    <h3>
+        Завантаження інформації про книжки жанру "@ViewBag.genreName" в файл:
+        @Html.ActionLink("Download", "Export", new { name = ViewBag.genreName, id = ViewBag.genreId })
+    </h3>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Book)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Book.Name)
+                </td>
+
+                <td class="td">
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    @Html.ActionLink("Book", "Details", new { id = item.Id, name = item.Book.Name, num = item.Book.PagesNum }) |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="container">
+    <div id="chart1"></div>
+</div>
+
+
+
+@section scripts{
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+    google.charts.load('current', { 'packeges': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        $.get('/api/Charts/JsonData', function (jsonData){
+            data = google.visualization.arrayToDataTable(jsondata, false);
+            var option = {
+                title: "Співвідношення кількості книжок та мов",
+                width: 500, height: 400
+            };
+            chart = new google.visualization.PieChart(document.getElementById('chart1'));
+        })
+    }
+    </script>
+}

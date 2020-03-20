@@ -1,0 +1,57 @@
+﻿@model Library3.BookAuthors
+
+@{
+    ViewData["Title"] = "Book - ";
+}
+
+<h1>@ViewBag.bookName</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Book.BookAuthors)
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var auth in ViewData["authorName"] as List<Authors>)
+            {
+
+                @Html.ActionLink(@auth.AuthorName, "Index", "BookAuthors", new { id = auth.Id, name = auth.AuthorName })
+                <a> </a>
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Book.BookGenres)
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var auth in ViewData["genreName"] as List<Genres>)
+            {
+
+                @Html.ActionLink(@auth.Name, "Index", "BookGenres", new { id = auth.Id, name = auth.Name })
+                <a> </a>
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Book.Language)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Book.Language.Lname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Book.PagesNum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Book.PagesNum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Book.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Book.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    @Html.ActionLink("Back to list", "Index", new { id = Model.Author.Id, name = Model.Author.AuthorName })
+</div>
