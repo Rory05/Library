@@ -20,7 +20,6 @@ namespace Library3.Controllers
         {
             _context = context;
         }
-
         // GET: Genres
         public async Task<IActionResult> Index()
         {
