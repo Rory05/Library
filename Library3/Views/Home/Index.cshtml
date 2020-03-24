@@ -1,48 +1,48 @@
-﻿@*@{
-        ViewData["Title"] = "";
-    }*@
+﻿
 
+@*---------------Діаграми-----------
+   
     @*<div class="container">
-        <div id="chart1"  style="position: relative; float: left" > </div>
-        <div id="chart2"  style="position: relative; float: left" > </div>
-    </div>
-@section scripts{
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                <div id="chart1"  style="position: relative; float: left" > </div>
+                <div id="chart2"  style="position: relative; float: left" > </div>
+            </div>
+        @section scripts{
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <script>
-        google.charts.load('current', { 'packages': ['corechart'] });
-        google.charts.setOnLoadCallback(drawChart);
+            <script>
+                google.charts.load('current', { 'packages': ['corechart'] });
+                google.charts.setOnLoadCallback(drawChart);
 
-        function drawChart() {
-            $.get('/api/Charts/JsonData', function (jsonData) {
-                data = google.visualization.arrayToDataTable(jsonData, false);
-                var option = {
-                    title: "Співвідношення кількості книжок та мов",
-                    width: 500,
-                    height: 400,
-                    is3D: true
+                function drawChart() {
+                    $.get('/api/Charts/JsonData', function (jsonData) {
+                        data = google.visualization.arrayToDataTable(jsonData, false);
+                        var option = {
+                            title: "Співвідношення кількості книжок та мов",
+                            width: 500,
+                            height: 400,
+                            is3D: true
+                        };
+                        chart = new google.visualization.PieChart(document.getElementById('chart1'));
+                        chart.draw(data, option);
+                    })
                 };
-                chart = new google.visualization.PieChart(document.getElementById('chart1'));
-                chart.draw(data, option);
-            })
-        };
-    </script>
-    <script>
-        google.charts.load('current', { 'packages': ['corechart'] });
-        google.charts.setOnLoadCallback(drawChart);
+            </script>
+            <script>
+                google.charts.load('current', { 'packages': ['corechart'] });
+                google.charts.setOnLoadCallback(drawChart);
 
-        function drawChart() {
-            $.get('/api/Charts/JsonData1', function (jsonData1) {
-                data = google.visualization.arrayToDataTable(jsonData1, false);
-                var option = {
-                    title: "Співвідношення кількості книжок та жанрів",
-                    width: 500,
-                    height: 400,
-                    is3D: true
+                function drawChart() {
+                    $.get('/api/Charts/JsonData1', function (jsonData1) {
+                        data = google.visualization.arrayToDataTable(jsonData1, false);
+                        var option = {
+                            title: "Співвідношення кількості книжок та жанрів",
+                            width: 500,
+                            height: 400,
+                            is3D: true
+                        };
+                        chart = new google.visualization.PieChart(document.getElementById('chart2'));
+                        chart.draw(data, option);
+                    })
                 };
-                chart = new google.visualization.PieChart(document.getElementById('chart2'));
-                chart.draw(data, option);
-            })
-        };
-    </script>
-}*@
+            </script>
+        }*@

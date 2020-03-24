@@ -5,10 +5,12 @@
 }
 
 <h1>@ViewBag.genreName</h1>
-
-<p>
-    @Html.ActionLink("Create", "Create", new { id = ViewBag.genreId })
-</p>
+@if (User.IsInRole("admin"))
+{ 
+    <p>
+        @Html.ActionLink("Create", "Create", new { id = ViewBag.genreId })
+    </p>
+ }
 <div>
     <h3>
         Завантаження інформації про книжки жанру "@ViewBag.genreName" в файл:
@@ -34,9 +36,13 @@
                 </td>
 
                 <td class="td">
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    @Html.ActionLink("Book", "Details", new { id = item.Id, name = item.Book.Name, num = item.Book.PagesNum }) |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @if (User.IsInRole("admin"))
+                    {
+
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit |</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete |</a>
+                    }
+                    @Html.ActionLink("Book", "Details", new { id = item.Id, name = item.Book.Name, num = item.Book.PagesNum })
                 </td>
             </tr>
         }
@@ -52,18 +58,18 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script>
-    google.charts.load('current', { 'packeges': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart);
+        google.charts.load('current', { 'packeges': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
 
-    function drawChart() {
-        $.get('/api/Charts/JsonData', function (jsonData){
-            data = google.visualization.arrayToDataTable(jsondata, false);
-            var option = {
-                title: "Співвідношення кількості книжок та мов",
-                width: 500, height: 400
-            };
-            chart = new google.visualization.PieChart(document.getElementById('chart1'));
-        })
-    }
+        function drawChart() {
+            $.get('/api/Charts/JsonData', function (jsonData) {
+                data = google.visualization.arrayToDataTable(jsondata, false);
+                var option = {
+                    title: "Співвідношення кількості книжок та мов",
+                    width: 500, height: 400
+                };
+                chart = new google.visualization.PieChart(document.getElementById('chart1'));
+            })
+        }
     </script>
 }

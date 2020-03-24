@@ -52,6 +52,7 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    @Html.ActionLink("Back to list", "Index", new { id = Model.Genre.Id, name = Model.Genre.Name }) 
+    @if (User.IsInRole("admin"))
+    {<a asp-action="Edit" asp-route-id="@Model.Id">Edit |</a>}
+@Html.ActionLink("Back to list", "Index", new { id = Model.Genre.Id, name = Model.Genre.Name })
 </div>

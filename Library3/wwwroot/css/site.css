@@ -1,5 +1,5 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
+﻿Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets.
 
 a.navbar-brand {
     white-space: normal;
@@ -93,9 +93,10 @@ button:focus {
     background-color: rgba(62, 54, 54, .83);
 }
 
-.knopkamesto{
-    display:block;
+.knopkamesto {
+    display: block;
 }
+
 .knopki {
     background-color: rgba(48, 22, 22, 0.75);
     height: 39vh;
@@ -103,12 +104,40 @@ button:focus {
     border-color: rgba(57, 37, 37, 0.75);
     margin-bottom: 10px;
 }
+
 .knopka {
     background-color: rgba(48, 22, 22, 0.75);
     height: 78vh;
     width: 33%;
     border-color: rgba(57, 37, 37, 0.75);
     margin-bottom: 10px;
+}
+
+.knopka_all {
+    margin-left: 30%;
+    margin-bottom: 15px;
+    color: black;
+    background-color: rgba(236, 210, 185, 0.50);
+}
+
+    .knopka_all:hover {
+        background-color: rgb(220, 185, 151);
+    }
+
+.knopka_logout {
+    color: black;
+    background-color: rgba(236, 210, 185, 0.50);
+}
+
+    .knopka_logout:hover {
+        background-color: rgb(220, 185, 151);
+    }
+
+.enter_block {
+    background-color: rgba(62, 54, 54, .83);
+    position: absolute;
+    right: 7%;
+    width: 25%;
 }
 
 .mytext {
@@ -131,8 +160,17 @@ button:focus {
 }
 
 .homebtn {
-    /margin-right: 20px;
     margin-left: 25px;
+}
+
+.enter {
+    position: absolute;
+    right: 20px;
+}
+
+.reg {
+    position: absolute;
+    right: 90px;
 }
 
 .table {
@@ -140,10 +178,11 @@ button:focus {
     color: rgb(220, 185, 151);
     font-size: 27px;
 }
+
 .td {
-    
     text-align: right;
 }
-a{
+
+a {
     margin-right: 5px;
 }

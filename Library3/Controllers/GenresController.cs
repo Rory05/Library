@@ -57,13 +57,27 @@ namespace Library3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Information")] Genres genres)
         {
-            if (ModelState.IsValid)
+            int counter = 0;
+            foreach (var g in _context.Genres)
             {
-                _context.Add(genres);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (g.Name == genres.Name) { counter++; break; }
             }
-            return View(genres);
+
+            if (counter != 0)
+            {
+                ModelState.AddModelError("Name", "Таке ім'я вже існує");
+                return View(genres);
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    _context.Add(genres);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(genres);
+            }
         }
 
         // GET: Genres/Edit/5
@@ -189,15 +203,12 @@ namespace Library3.Controllers
                                 {
                                     newgen = new Genres();
                                     newgen.Name = worksheet.Name;
-                                    //newgen.Information = "from EXCEL";
-                                    //додати в контекст
                                     _context.Genres.Add(newgen);
                                 }
                                 //перегляд усіх рядків                    
-                                foreach (IXLRow row in worksheet.RowsUsed())
+                                foreach (IXLRow row in worksheet.RowsUsed().Skip(1))
                                 {
-                                    try
-                                    {
+                                    
                                         Books book = new Books();
                                     int counter = 0;
                                     foreach (var bo in _context.Books)
@@ -212,14 +223,14 @@ namespace Library3.Controllers
                                             if ((book.Id == gen.BookId) && (newgen.Id == gen.GenreId)) { count++; break; }
                                         }if(count>0)
                                         {
-                                            goto link1;// переходимо до наступного рядка
+                                            goto link1;// якщо такий книжко-жанр вже існує, переходимо до наступного рядка
                                         }else
                                         {
                                             BookGenres bookg = new BookGenres();
                                             bookg.Book = book;
                                             bookg.Genre = newgen;
                                             _context.BookGenres.Add(bookg);
-                                            goto link1;
+                                            goto link1;// переходимо до наступного рядка, бо вже маємо інформацію про цю книжку
                                         }
                                         
                                     }
@@ -250,13 +261,11 @@ namespace Library3.Controllers
                                         book.LanguageId = newlang.Id;
                                     }
                                     
-                                    
                                         BookGenres bg = new BookGenres();
                                         bg.Book = book;
                                         bg.Genre = newgen;
-
                                         _context.BookGenres.Add(bg);
-                                        //у разі наявності автора знайти його, у разі відсутності - додати
+                                        
                                         int i = 4;
                                         while (row.Cell(i).Value.ToString().Length > 0)
                                         {
@@ -283,12 +292,7 @@ namespace Library3.Controllers
                                                 _context.BookAuthors.Add(ba);
                                             i++;
                                         }
-                                    }
-                                    catch (Exception e)
-                                    {
 
-                                    }
-                                    
                                     link1:;
                                     await _context.SaveChangesAsync();
                                     
@@ -301,9 +305,6 @@ namespace Library3.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-        //////
-
-        
 
     }
 }

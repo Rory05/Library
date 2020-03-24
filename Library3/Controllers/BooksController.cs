@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Library3;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Library3.Controllers
 {
@@ -81,7 +82,6 @@ namespace Library3.Controllers
             ViewData["LanguageId"] = new SelectList(_context.Language, "Id", "Lname");
             return View();
         }
-
         // POST: Books/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -98,12 +98,14 @@ namespace Library3.Controllers
             if (counter != 0)
             {
                 ModelState.AddModelError("Name", "Таке ім'я вже існує");
+                ViewData["LanguageId"] = new SelectList(_context.Language, "Id", "Lname", books.LanguageId);
                 return View(books);
             } else
             {
                 if (books.PagesNum > 0)
                 {
                     ModelState.AddModelError("PagesNum", "Кількість сторінок понна бути додатня!");
+                    ViewData["LanguageId"] = new SelectList(_context.Language, "Id", "Lname", books.LanguageId);
                     return View(books);
                 }
                 else

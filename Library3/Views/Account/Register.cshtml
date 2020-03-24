@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "Register - ";
+}
+
+
+@model Library3.ViewModel.RegisterViewModel
+    
+    <form class=" enter_block" method="post" asp-controller="Account" asp-action="Register">
+        <h2>Register</h2>
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <label class="homebtn" asp-for="Name"></label><br />
+            <input class="homebtn" asp-for="Name" /><br />
+            <span asp-validation-for="Name" class="text-danger homebtn"></span>
+        </div>
+        <div>
+            <label class="homebtn" asp-for="Password"></label><br />
+            <input class="homebtn" asp-for="Password" /><br />
+            <span asp-validation-for="Password" class="text-danger homebtn"></span>
+        </div>
+        <div>
+            <label class="homebtn" asp-for="PasswordConfirm"></label><br />
+            <input class="homebtn" asp-for="PasswordConfirm" /><br />
+            <span asp-validation-for="PasswordConfirm" class="text-danger homebtn"></span><br />
+        </div>
+        <div>
+            <input class="knopka_all" type="submit" value="Реєстрація" />
+        </div>
+    </form>
+
+

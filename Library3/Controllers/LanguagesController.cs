@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Library3;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Library3.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class LanguagesController : Controller
     {
         private readonly LibraryContext _context;

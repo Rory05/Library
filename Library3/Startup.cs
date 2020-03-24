@@ -11,7 +11,7 @@ using Microsoft.Extensions.Hosting;
 
 using Library3.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity;
 
 namespace Library3
 {
@@ -30,6 +30,12 @@ namespace Library3
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<LibraryContext>(options => options.UseSqlServer(connection));
             services.AddControllersWithViews();
+
+            string connectionIdentity = Configuration.GetConnectionString("IdentityConnection");
+            services.AddDbContext<IdentityContext>(options => options.UseSqlServer(connectionIdentity));
+            services.AddControllersWithViews();
+
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +56,7 @@ namespace Library3
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

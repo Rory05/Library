@@ -5,10 +5,13 @@
 }
 
 <h1>Всі автори</h1>
+@if (User.IsInRole("admin"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -22,20 +25,25 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AuthorName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td class="td">
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                @Html.ActionLink("Books", "Index", "BookAuthors", new { id = item.Id, name = item.AuthorName }) |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AuthorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td class="td">
+                    @if (User.IsInRole("admin"))
+                    {
+
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit |</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete |</a>
+                    }
+                    @Html.ActionLink("Books", "Index", "BookAuthors", new { id = item.Id, name = item.AuthorName })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

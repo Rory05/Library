@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Enter - ";
+}
+@model Library3.ViewModel.LoginViewModel
+
+    <form class="enter_block" method="post" asp-controller="Account" asp-action="Login"
+          asp-route-returnUrl="@Model.ReturnUrl">
+        <h2>Enter to YourLibrary</h2>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div>
+            <label class="homebtn" asp-for="Name"></label><br />
+            <input class="homebtn" asp-for="Name" /><br />
+            <span asp-validation-for="Name" class="text-danger homebtn"></span>
+        </div>
+        <div>
+            <label class="homebtn" asp-for="Password"></label><br />
+            <input class="homebtn" asp-for="Password" /><br />
+            <span asp-validation-for="Password" class="text-danger homebtn"></span>
+        </div>
+        <div>
+            <input class="homebtn" asp-for="RememberMe" />
+            <label asp-for="RememberMe"></label>
+        </div>
+        <div>
+            <input class="knopka_all" type="submit" value="Увійти" />
+        </div>
+    </form>
+
+

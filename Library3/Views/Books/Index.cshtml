@@ -5,10 +5,13 @@
 }
 
 <h1>Всі книжки</h1>
+@if (User.IsInRole("admin"))
+{
+    <p>
+        @Html.ActionLink("Create new", "Create", new { id = ViewBag.bookId })
+    </p>
+}
 
-<p>
-    @Html.ActionLink("Create new", "Create", new { id = ViewBag.bookId })
-</p>
 <table class="table alltext">
     <thead>
         <tr>
@@ -38,9 +41,15 @@
                     @Html.DisplayFor(modelItem => item.Language.Lname)
                 </td>
                 <td class="td">
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    @Html.ActionLink("Book", "Details", new { id = item.Id, name = item.Name }) |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @if (User.IsInRole("admin"))
+                    {
+
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit |</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete |</a>
+                    }
+
+                    @Html.ActionLink("Book", "Details", new { id = item.Id, name = item.Name })
+
                 </td>
             </tr>
         }
