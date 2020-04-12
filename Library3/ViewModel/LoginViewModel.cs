@@ -12,6 +12,8 @@ namespace Library3.ViewModel
         [Display(Name = "Ім'я")]
         public string Name { get; set; }
 
+        public string Email { get; set; }
+
         [Required(ErrorMessage = "Поле не повинно бути порожнім")]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]

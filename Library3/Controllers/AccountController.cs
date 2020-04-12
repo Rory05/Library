@@ -30,7 +30,7 @@ namespace Library3.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new User { UserName = model.Name };
+                User user = new User { UserName = model.Name, Email = model.Email };
                 // додаємо користувача
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

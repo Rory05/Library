@@ -23,6 +23,7 @@ namespace Library3.Controllers
         public IActionResult Index() => View(_roleManager.Roles.ToList());
         public IActionResult UserList() => View(_userManager.Users.ToList());
 
+
         public async Task<IActionResult> Edit(string userId)
         {
             // отримуємо користувача
@@ -35,7 +36,7 @@ namespace Library3.Controllers
                 ChangeRoleViewModel model = new ChangeRoleViewModel
                 {
                     UserId = user.Id,
-                    UserName = user.Email,
+                    UserName = user.Name,
                     UserRoles = userRoles,
                     AllRoles = allRoles
                 };

@@ -13,6 +13,11 @@ namespace Library3.ViewModel
         [DataType(DataType.Text)]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "Введіть email для підтвердження реєстрації")]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
         [Required(ErrorMessage = "Поле не повинно бути порожнім")]
         [Display(Name = "Пароль")]
         [DataType(DataType.Password)]
