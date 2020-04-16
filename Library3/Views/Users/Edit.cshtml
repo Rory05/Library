@@ -1,7 +1,8 @@
 ﻿@model Library3.ViewModel.EditUserViewModel
 @{
-    ViewBag.Title = "Редактирование пользователя";
+    ViewData["Title"] = "Edit - ";
 }
+
 <form asp-action="Edit" asp-controller="Users">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">

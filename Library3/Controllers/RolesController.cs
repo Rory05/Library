@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Library3.Controllers
 {
-    [Authorize(Roles = "admin")]
+    
     public class RolesController : Controller
     {
         RoleManager<IdentityRole> _roleManager;
@@ -70,5 +70,15 @@ namespace Library3.Controllers
             return NotFound();
         }
 
+        [HttpPost]
+        public async Task<ActionResult> Delete(string id)
+        {
+            var role = await _roleManager.FindByIdAsync(id);
+            if (role != null)
+            {
+                IdentityResult result = await _roleManager.DeleteAsync(role);
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -1,0 +1,31 @@
+﻿
+@model Library3.ViewModel.EditUserViewModel
+@{
+    ViewData["Title"] = "Account - ";
+}
+
+<h1>Account</h1>
+<div class="enter_block"
+      <hr />
+      <dl class="row">
+          <dt class="col-sm-2">
+              @Html.DisplayNameFor(model => User.Identity.Name)
+          </dt>
+          <dd class="col-sm-10">
+              @Html.DisplayFor(model => User.Identity.Name)
+          </dd>
+
+          <dt class="col-sm-2">
+              <p>Права доступу</p>
+          </dt>
+          <dd class="col-sm-10">
+              @if (User.IsInRole("admin"))
+              {
+                  <p>Адміністратор</p>
+              }
+              else
+              { <p>Користувач</p>}
+          </dd>
+          <a asp-action="Edit" asp-controller="Users" asp-route-id="id">Edit</a>
+      </dl>
+</div>
