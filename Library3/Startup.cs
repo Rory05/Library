@@ -27,6 +27,12 @@ namespace Library3
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IUserValidator<User>, CustomUserValidator>();
+
+            services.AddTransient<IPasswordValidator<User>,
+            CustomPasswordValidator>(serv => new CustomPasswordValidator(6));
+
+
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<LibraryContext>(options => options.UseSqlServer(connection));
             services.AddControllersWithViews();
@@ -35,7 +41,7 @@ namespace Library3
             services.AddDbContext<IdentityContext>(options => options.UseSqlServer(connectionIdentity));
             services.AddControllersWithViews();
 
-            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
+            services.AddIdentity<User, IdentityRole>().AddDefaultTokenProviders().AddEntityFrameworkStores<IdentityContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

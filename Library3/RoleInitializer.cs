@@ -12,6 +12,7 @@ namespace Library3
         public static async Task InitializeAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             string adminName = "Admin";
+            string adminEmail = "admin@gmail.com";
             string password = "Maria.5";
             if (await roleManager.FindByNameAsync("admin") == null)
             {
@@ -23,7 +24,7 @@ namespace Library3
             }
             if (await userManager.FindByNameAsync(adminName) == null)
             {
-                User admin = new User { Name = adminName, UserName = adminName };
+                User admin = new User { Name = adminName, UserName = adminName, Email = adminEmail };
                 IdentityResult result = await userManager.CreateAsync(admin, password);
                 if (result.Succeeded)
                 {
