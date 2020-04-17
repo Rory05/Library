@@ -137,6 +137,8 @@ button:focus {
     position: absolute;
     right: 7%;
     width: 25%;
+    margin-bottom:5px;
+    z-index:200
 }
 
 .mytext {
@@ -162,9 +164,14 @@ button:focus {
     margin-left: 25px;
 }
 
+.name_page_button {
+    position: absolute;
+    right: 90px;
+    top: 16px
+}
 .enter {
-    position:absolute;
-    right:20px;
+    position: absolute;
+    right: 15px;
 }
 .reg {
     position: absolute;

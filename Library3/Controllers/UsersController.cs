@@ -20,6 +20,8 @@ namespace Library3.Controllers
 
         public IActionResult Create() => View();
 
+        public IActionResult Account() => View();
+
         [HttpPost]
         public async Task<IActionResult> Create(CreateUserViewModel model)
         {

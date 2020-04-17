@@ -39,7 +39,7 @@
                         <li class="nav-item">
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <a class="mytext enter"asp-controller="Account" asp-action="Account">@User.Identity.Name</a>
+                                <a class="mytext name_page_button" asp-controller="Users" asp-action="Account">@User.Identity.Name</a>
 
                                 <form method="post" asp-controller="Account" asp-action="Logout">
                                     <input class="mytext knopka_logout" type="submit" value="Вихід" />
@@ -56,11 +56,11 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container" style="margin-bottom:72px; z-index:1">
         <main role="main" class="kvadrat alltext" style="color: rgb(236, 210, 185)">
-
-
-            @RenderBody()
+            <div>
+                @RenderBody()
+            </div>
         </main>
     </div>
 

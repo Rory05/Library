@@ -1,12 +1,11 @@
-﻿
-@{
-    ViewData["Title"] = "Register - ";
-}
+﻿@model Library3.ViewModel.RegisterViewModel
 
+<div>
+    @{
+        ViewData["Title"] = "Register - ";
+    }
 
-@model Library3.ViewModel.RegisterViewModel
-    
-    <form class=" enter_block" method="post" asp-controller="Account" asp-action="Register">
+    <form class="enter_block" method="post" asp-controller="Account" asp-action="Register">
         <h2>Register</h2>
         <div asp-validation-summary="ModelOnly"></div>
         <div>
@@ -33,5 +32,4 @@
             <input class="knopka_all" type="submit" value="Реєстрація" />
         </div>
     </form>
-
-
+</div>
