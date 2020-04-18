@@ -22,6 +22,11 @@ namespace Library3.Controllers
             _signInManager = signInManager;
         }
         [HttpGet]
+        public IActionResult Account()
+        {
+            return View();
+        }
+        [HttpGet]
         public IActionResult Register()
         {
             return View();

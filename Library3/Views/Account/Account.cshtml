@@ -4,8 +4,7 @@
     ViewData["Title"] = "Account - ";
 }
 
-<h1>Account</h1>
-<div class="enter_block"
+<div style="background-color: rgba(62, 54, 54, .83);position: absolute; right: 7%; width: 25%">
       <hr />
       <dl class="row">
           <dt class="col-sm-2">
@@ -26,6 +25,9 @@
               else
               { <p>Користувач</p>}
           </dd>
-          <a asp-action="Edit" asp-controller="Users" asp-route-id="id">Edit</a>
+          <dt class="col-sm-2">
+              <a asp-action="Edit" asp-controller="Users" asp-route-id="id">Edit</a>
+          </dt>
+          
       </dl>
 </div>

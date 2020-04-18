@@ -39,7 +39,7 @@
                         <li class="nav-item">
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <a class="mytext enter"asp-controller="Account" asp-action="Account">@User.Identity.Name</a>
+                                <a  style="margin-right:80px" class="mytext enter"asp-controller="Account" asp-action="Account">@User.Identity.Name</a>
 
                                 <form method="post" asp-controller="Account" asp-action="Logout">
                                     <input class="mytext knopka_logout" type="submit" value="Вихід" />
