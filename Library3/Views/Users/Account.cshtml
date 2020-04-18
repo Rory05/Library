@@ -3,9 +3,8 @@
 @{
     ViewData["Title"] = "Account - ";
 }
-
-<div style="background-color: rgba(62, 54, 54, .83);position: absolute; right: 7%; width: 25%">
-      <hr />
+<div class="enter_block">
+     <h1>Account</h1>
       <dl class="row">
           <dt class="col-sm-2">
               @Html.DisplayNameFor(model => User.Identity.Name)
@@ -15,7 +14,7 @@
           </dd>
 
           <dt class="col-sm-2">
-              <p>Права доступу</p>
+              <p>Права</p>
           </dt>
           <dd class="col-sm-10">
               @if (User.IsInRole("admin"))
@@ -25,9 +24,6 @@
               else
               { <p>Користувач</p>}
           </dd>
-          <dt class="col-sm-2">
-              <a asp-action="Edit" asp-controller="Users" asp-route-id="id">Edit</a>
-          </dt>
-          
       </dl>
+      <a asp-action="Edit" asp-controller="Users" asp-route-id="id">Edit</a>
 </div>

@@ -19,22 +19,22 @@ namespace Library3.Models
         {
             List<IdentityError> errors = new List<IdentityError>();
 
-            //if (String.IsNullOrEmpty(password) || password.Length < RequiredLength)
-            //{
-            //    errors.Add(new IdentityError
-            //    {
-            //        Description = $"Минимальная длина пароля равна {RequiredLength}"
-            //    });
-            //}
-            //string pattern = "^[0-9]+$";
+            if (String.IsNullOrEmpty(password) || password.Length < RequiredLength)
+            {
+                errors.Add(new IdentityError
+                {
+                    Description = $"Минимальная длина пароля равна {RequiredLength}"
+                });
+            }
+            string pattern = "^[0-9]+$";
 
-            //if (!Regex.IsMatch(password, pattern))
-            //{
-            //    errors.Add(new IdentityError
-            //    {
-            //        Description = "Пароль должен состоять только из цифр"
-            //    });
-            //}
+            if (!Regex.IsMatch(password, pattern))
+            {
+                errors.Add(new IdentityError
+                {
+                    Description = "Пароль должен состоять только из цифр"
+                });
+            }
             return Task.FromResult(errors.Count == 0 ?
                 IdentityResult.Success : IdentityResult.Failed(errors.ToArray()));
         }
