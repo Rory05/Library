@@ -13,10 +13,17 @@
  }
 <div>
     <h3>
-        Завантаження інформації про книжки жанру "@ViewBag.genreName" в файл:
+        Завантаження інформації про книжки жанру "@ViewBag.genreName" в .xlsx файл:
         @Html.ActionLink("Download", "Export", new { name = ViewBag.genreName, id = ViewBag.genreId })
+        | в .docx файл:
+        @Html.ActionLink("Download", "ExportDocx", new { name = ViewBag.genreName, id = ViewBag.genreId })
     </h3>
 </div>
+@*<div>
+    <h3>| в .docx файл:
+        @Html.ActionLink("Download", "ExportDocx", new { name = ViewBag.genreName, id = ViewBag.genreId })
+    </h3>
+</div>*@
 <table class="table">
     <thead>
         <tr>

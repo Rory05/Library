@@ -21,11 +21,7 @@ namespace Library3.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
-        [HttpGet]
-        public IActionResult Account()
-        {
-            return View();
-        }
+        
         [HttpGet]
         public IActionResult Register()
         {

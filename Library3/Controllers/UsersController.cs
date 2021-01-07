@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Library3.Models;
 using Library3.ViewModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Library3.Controllers
 {
@@ -20,7 +22,6 @@ namespace Library3.Controllers
 
         public IActionResult Create() => View();
 
-        public IActionResult Account() => View();
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateUserViewModel model)
@@ -141,5 +142,6 @@ namespace Library3.Controllers
             }
             return View(model);
         }
+
     }
 }

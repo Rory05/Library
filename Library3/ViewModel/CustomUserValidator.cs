@@ -14,14 +14,14 @@ namespace Library3.Models
             {
                 errors.Add(new IdentityError
                 {
-                    Description = "Данный домен находится в спам-базе. Выберите другой почтовый сервис"
+                    Description = "Домен знаходиться в спам-базі. Оберіть інший поштовый сервіс"
                 });
             }
             if (user.UserName.Contains("admin"))
             {
                 errors.Add(new IdentityError
                 {
-                    Description = "Ник пользователя не должен содержать слово 'admin'"
+                    Description = "Нік користувача не повинен містити в собі слово 'admin'"
                 });
             }
             return Task.FromResult(errors.Count == 0 ?

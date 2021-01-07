@@ -23,7 +23,7 @@ namespace Library3.Models
             {
                 errors.Add(new IdentityError
                 {
-                    Description = $"Минимальная длина пароля равна {RequiredLength}"
+                    Description = $"Мінімальна довжина пароля: {RequiredLength}"
                 });
             }
             string pattern = "^[0-9]+$";
@@ -32,7 +32,7 @@ namespace Library3.Models
             {
                 errors.Add(new IdentityError
                 {
-                    Description = "Пароль должен состоять только из цифр"
+                    Description = "Пароль повинен складатися тільки з цифр"
                 });
             }
             return Task.FromResult(errors.Count == 0 ?

@@ -3,7 +3,7 @@
     ViewData["Title"] = "Edit - ";
 }
 
-<form asp-action="Edit" asp-controller="Users">
+<form asp-action="Edit" asp-controller="Users" class="col-md-4">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
         <input type="hidden" asp-for="Id" />
@@ -17,7 +17,8 @@
         <input type="text" asp-for="Name" class="form-control" />
     </div>
     <div class="form-group">
-        <input type="submit" value="Сохранить" class="btn btn-outline-secondary" />
-        <a asp-action="Index" asp-controller="Users" class="btn btn-outline-secondary">Back to List</a>
+        <input type="submit" value="Save" class="knopka_all" style="margin-left:3%; margin-bottom:0%" />
+        
     </div>
+    <div><a asp-action="Index" asp-controller="Users">  Back to List</a></div>
 </form>

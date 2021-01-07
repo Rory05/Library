@@ -9,6 +9,10 @@ using Library3;
 using ClosedXML.Excel;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Spire.Doc;
+using Spire.Doc.Documents;
+using System.Drawing;
+
 
 namespace Library3.Controllers
 {
@@ -268,5 +272,75 @@ namespace Library3.Controllers
             }
         }
         ////////////////////////////////////
+        public ActionResult ExportDocx(string name, int? id)
+        {
+                Document doc = new Document();
+                Section s = doc.AddSection();
+
+            var genres = _context.BookGenres.Include(b => b.Book).Include(l => l.Book.Language).ToList();
+                var bookgenres = from bookgen in _context.BookGenres
+                                 where bookgen.GenreId == id
+                                 select bookgen;
+                List<Books> books = new List<Books>();
+                foreach (var b in bookgenres)
+                {
+                    var book = from boo in _context.Books
+                               where boo.Id == b.BookId
+                               select boo;
+                    foreach (var bo in book)
+                    { books.Add(bo); }
+                }
+            ////////////
+            ParagraphStyle style1 = new ParagraphStyle(doc);
+            style1.Name = "Style1";
+            style1.CharacterFormat.Bold = true;
+            style1.CharacterFormat.FontSize = 18;
+            doc.Styles.Add(style1);
+            ////////////
+            ParagraphStyle style2 = new ParagraphStyle(doc);
+            style2.Name = "Style2";
+            style2.CharacterFormat.Italic = true;
+            style2.CharacterFormat.FontSize = 14;
+            style2.CharacterFormat.TextColor = Color.Blue;
+            doc.Styles.Add(style2);
+            ////////////
+            Paragraph p0 = s.AddParagraph();
+            p0.AppendText(name);
+            p0.ApplyStyle(style1.Name);
+
+            for (int i = 0; i < books.Count(); i++)
+                {
+                Paragraph pn = s.AddParagraph();
+                pn.AppendText( "Назва:  " + books[i].Name);
+                pn.ApplyStyle(style2.Name);
+
+                Paragraph p = s.AddParagraph();
+                p.AppendText( "Автор:  ");
+                    var ab = _context.BookAuthors.Where(a => a.BookId == books[i].Id).Include("Author").ToList();
+                    foreach (var a in ab)
+                    {
+                       p.AppendText(a.Author.AuthorName + ";  ");
+                    }
+                    s.AddParagraph().AppendText("К-ть сторінок:  " + books[i].PagesNum);
+                    s.AddParagraph().AppendText("Мова:  " + books[i].Language.Lname);
+                    s.AddParagraph().AppendText("Опис:  " + books[i].Description);
+                    s.AddParagraph();
+                }
+
+            using (var stream = new MemoryStream())
+            {
+                doc.SaveToFile(stream, FileFormat.Docx2013);
+                stream.Flush();
+
+                return new FileContentResult(stream.ToArray(), "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+                {
+                    FileDownloadName = $"library_{DateTime.UtcNow.ToShortDateString()}.docx"
+                };
+            }
+
+
+        }
+
+
     }
 }

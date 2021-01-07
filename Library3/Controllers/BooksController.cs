@@ -102,7 +102,7 @@ namespace Library3.Controllers
                 return View(books);
             } else
             {
-                if (books.PagesNum > 0)
+                if (books.PagesNum < 0)
                 {
                     ModelState.AddModelError("PagesNum", "Кількість сторінок понна бути додатня!");
                     ViewData["LanguageId"] = new SelectList(_context.Language, "Id", "Lname", books.LanguageId);

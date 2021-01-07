@@ -13,7 +13,7 @@ namespace Library3
         {
             string adminName = "Admin";
             string adminEmail = "admin@gmail.com";
-            string password = "Maria.5";
+            string password = "124578369";
             if (await roleManager.FindByNameAsync("admin") == null)
             {
                 await roleManager.CreateAsync(new IdentityRole("admin"));

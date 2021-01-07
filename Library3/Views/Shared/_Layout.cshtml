@@ -8,7 +8,7 @@
     
     <title>@ViewData["Title"] YourLibrary</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
 </head>
 <body>
     <header>
@@ -30,16 +30,16 @@
                         <li class="nav-item">
                             <a class="homebtn mytext" asp-area="" asp-controller="Authors" asp-action="Index">Authors</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="homebtn mytext" asp-area="" asp-controller="Home" asp-action="Privacy">  Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="homebtn mytext" asp-area="" asp-controller="Users" asp-action="Index">  Users</a>
-                        </li>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="homebtn mytext" asp-area="" asp-controller="Home" asp-action="Privacy">  Privacy</a>
+                            </li>
+                        }
                         <li class="nav-item">
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <a  style="margin-right:80px" class="mytext enter"asp-controller="Account" asp-action="Account">@User.Identity.Name</a>
+                                <a style="margin-right:80px" class="mytext enter" asp-controller="Users" asp-action="Index">@User.Identity.Name</a>
 
                                 <form method="post" asp-controller="Account" asp-action="Logout">
                                     <input class="mytext knopka_logout" type="submit" value="Вихід" />
@@ -64,7 +64,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="footer">
         <div class="container">
             &copy; 2020 - Library - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
